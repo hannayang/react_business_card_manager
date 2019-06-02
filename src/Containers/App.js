@@ -1,77 +1,274 @@
 import React, { Component } from 'react';
 import './App.css';
-import Quote from '../Components/Quote/Quote'; 
-import Buttons from '../Components/Buttons/Buttons'; 
+import Person from '../Components/Persons/Person/Person'; 
 
-const quoteLibrary = [
-  {text: "You know you're in love when you can't fall asleep because reality is finally better than your dreams.", author: 'Dr. Suess', color: '#16a085'}, 
-  {text: 'Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do.', author: 'Mark Twain', color: '#27ae60'}, 
-  {text: 'The first step toward success is taken when you refuse to be a captive of the environment in which you first find yourself.', author: 'Mark Caine', color: '#2c3e50'}, 
-  {text: 'Love yourself first and everything else falls into line. You really have to love yourself to get anything done in this world.', author: 'Lucille Ball', color: '#f39c12'}, 
-  {text: 'Challenges are what make life interesting and overcoming them is what makes life meaningful.', author: 'Joshua J. Marine', color: '#e74c3c'},  
-  {text: 'Remember that the happiest people are not those getting more, but those giving more.', author: 'H. Jackson Brown, Jr.', color: '#9b59b6'}, 
-  {text: 'Live in the sunshine, swim the sea, drink the wild air.', author: 'Ralph Waldo Emerson', color: '#fb6964'},  
-  {text: 'We are what we repeatedly do; excellence, then, is not an act but a habit.', author: 'Aristotle', color: '#388894'}, 
-  {text: 'A man is a success if he gets up in the morning and gets to bed at night, and in between he does what he wants to do.', author: 'Bob Dylan', color: '#472e32'}, 
-  {text: 'The big lesson in life, baby, is never be scared of anyone or anything.', author: 'Frank Sinatra', color: '#94386C'}, 
-]; 
-
-const nextIndex = () => {
-  return Math.floor(Math.random() * quoteLibrary.length);
-};
-
-const constructTwitterUrl = {
-  preface: 'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text="', 
-  connection: '"', 
-  ending: '' }; 
-
-const constructTumblrUrl = {
-  preface: 'https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=', 
-  connection: '&content=', 
-  ending: '&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button'
-};
+const persons = [{ 
+  id: '001', 
+  name: 'Hanni Michael', 
+  title: 'Front-end engineer', 
+  company: 'freeCodeCamp', 
+  email: 'hannimichael@gmail.com',
+  remarks: 'Met at the Coding Conference. With 8 years experience.', 
+  editing: false, 
+}, { 
+  id: '002', 
+  name: 'Leon Cheung', 
+  title: 'Full-stack developer', 
+  company: 'ABC Co.', 
+  email: 'leoncheung@gmail.com', 
+  remarks: 'A reliable web development freelancer based in Santiego.', 
+  editing: false, 
+}, { 
+  id: '003', 
+  name: 'Hans Lee', 
+  title: 'Constructor', 
+  company: 'XKD Construction Co.', 
+  email: 'hanslee@gmail.com', 
+  remarks: 'Met at the Construction Conference.', 
+  editing: false, 
+}, { 
+  id: '004', 
+  name: 'Clare Green', 
+  title: 'Film producer', 
+  company: 'Telsee Movie Production', 
+  email: 'claregreen@gmail.com', 
+  remarks: 'Worked together on the Cartoon Movie Project.', 
+  editing: false, 
+}, { 
+  id: '005', 
+  name: 'Tim White', 
+  title: 'Javascript coach', 
+  company: 'Huiwen Coding School', 
+  email: 'timwhite@gmail.com', 
+  remarks: 'JS coach for startups.', 
+  editing: false, 
+}, { 
+  id: '006', 
+  name: 'Stephan Cook', 
+  title: 'CSS coach', 
+  company: 'Huiwen Coding School', 
+  email: 'stephancook@gmail.com', 
+  remarks: 'CSS coach for startups.', 
+  editing: false, 
+}, { 
+  id: '007', 
+  name: 'Nick Thompson', 
+  title: 'Business analyst', 
+  company: 'Commercial Bank', 
+  email: 'nickthompson@gmail.com', 
+  remarks: 'Worked on ABC project.', 
+  editing: false, 
+}, { 
+  id: '008', 
+  name: 'Helen Porter', 
+  title: 'Magician', 
+  company: 'Magic Co', 
+  email: 'helenporter@gmail.com', 
+  remarks: 'Invited for annual dinner performance and was well-received.', 
+  editing: false, 
+}, { 
+  id: '009', 
+  name: 'Dereck Tong', 
+  title: 'Dentist', 
+  company: 'Big Smile Clinic', 
+  email: 'derecktong@gmail.com', 
+  remarks: 'Family doctor\'s referral.', 
+  editing: false, 
+}, { 
+  id: '010', 
+  name: 'Lynn Luck', 
+  title: 'Daycare teacher', 
+  company: 'Happy Faces Daycare', 
+  email: 'lynnluck@gmail.com', 
+  remarks: 'My kid\'s daycare teacher.', 
+  editing: false, 
+}, { 
+  id: '011', 
+  name: 'Timon Blaire', 
+  title: 'Hardware engineer', 
+  company: 'Solutions Co.', 
+  email: 'timonblaire@gmail.com', 
+  remarks: 'Worked together on XIL project.', 
+  editing: false, 
+}, { 
+  id: '012', 
+  name: 'Amy Fu', 
+  title: 'tech recruiter', 
+  company: 'Axiom One', 
+  email: 'amyfu@gmail.com',
+  remarks: 'Contracted headhunter for tech recruitment.', 
+  editing: false, 
+}, { 
+  id: '013', 
+  name: 'Hannah Lee', 
+  title: 'Constructor', 
+  company: 'AXI Construction Co.', 
+  email: 'hannahlee@gmail.com', 
+  remarks: 'Met at AXI Construction Conference.', 
+  editing: false, 
+}, { 
+  id: '014', 
+  name: 'Clara Green', 
+  title: 'Editor', 
+  company: 'Telsee Movie Production', 
+  email: 'claragreen@gmail.com', 
+  remarks: 'Worked together on the Cartoon Movie Project.', 
+  editing: false, 
+}, { 
+  id: '015', 
+  name: 'Tom White', 
+  title: 'Javascript expert', 
+  company: 'Huiwen Coding School', 
+  email: 'tomwhite@gmail.com', 
+  remarks: 'JS coach for startups.',
+  editing: false,
+}, { 
+  id: '016', 
+  name: 'Stephanie Cook', 
+  title: 'CSS coach', 
+  company: 'Huiwen Coding School', 
+  email: 'stephaniecook@gmail.com', 
+  remarks: 'CSS coach for startups.', 
+  editing: false, 
+}, { 
+  id: '017', 
+  name: 'Nikki Thompson', 
+  title: 'Financial analyst', 
+  company: 'Industrial and Commerce Bank', 
+  email: 'nikkithompson@gmail.com', 
+  remarks: 'Worked on ABC project.', 
+  editing: false, 
+}, { 
+  id: '018', 
+  name: 'Henry Porter', 
+  title: 'Musician', 
+  company: 'Bluebird Co', 
+  email: 'henryporter@gmail.com', 
+  remarks: 'Invited for annual dinner performance and was well-received.', 
+  editing: false, 
+}, { 
+  id: '019', 
+  name: 'Daniel Hans', 
+  title: 'Family doctor', 
+  company: 'Wellness Clinic', 
+  email: 'danielhans@gmail.com', 
+  remarks: 'Family doctor second choice.', 
+  editing: false, 
+}, { 
+  id: '020', 
+  name: 'Lucy Stone', 
+  title: 'Administrator', 
+  company: 'Happy Faces Daycare', 
+  email: 'lucystone@gmail.com', 
+  remarks: 'My kid\'s daycare admin.', 
+  editing: false, 
+}, { 
+  id: '021', 
+  name: 'Lily Smith', 
+  title: 'Administrator', 
+  company: 'Office Manager Co.', 
+  email: 'lilysmith@gmail.com', 
+  remarks: 'Oursourced office manager.', 
+  editing: false, 
+}]
 
 class App extends Component {
-  state = {
-    randomIndex: nextIndex(),
+  constructor(props) {
+    super(props); 
+    this.state = {
+      persons: persons, 
+      showPersons: false,  
+    } 
+    this.remarksInputHandler = this.remarksInputHandler.bind(this); 
+    this.deletePersonHandler = this.deletePersonHandler.bind(this); 
+    this.togglePersonsHandler = this.togglePersonsHandler.bind(this); 
+    this.remarksEditorHandler = this.remarksEditorHandler.bind(this); 
   }; 
 
-  clickHandler = ( ) => {
-    this.setState ({
-      randomIndex: nextIndex(), 
+  remarksInputHandler(event, id) {
+    const person = this.state.persons.find(p => {
+      return p.id === id; 
     }); 
-  };
+    person.remarks = event.target.value; 
+    this.setState({
+      persons: this.state.persons, 
+    })
+  }; 
 
+  remarksEditorHandler(id) {
+    const person = this.state.persons.find(p => {
+      return p.id === id; 
+    })
+    person.editing = true; 
+    this.setState({
+      persons: this.state.persons,
+    })
+  }; 
+
+  remarksSubmitHandler(id) {
+    const person = this.state.persons.find(p => {
+      return p.id === id;
+    })
+    person.editing = false; 
+    this.setState({
+      persons: this.state.persons, 
+    })
+  }
+
+  deletePersonHandler(id) {
+    const filteredPersons = this.state.persons.filter(p => {
+      return p.id !== id; 
+    }); 
+    this.setState({
+      persons: filteredPersons, 
+    })
+  }; 
+
+  togglePersonsHandler() {
+    this.setState({
+      showPersons: !this.state.showPersons, 
+    })
+  }; 
+
+  getExtendedState(state) {
+    return {
+      showOrHideButtonName: state.showPersons === true ? 'HIDE CARDS' : 'SHOW CARDS', 
+      showOrHideClasses: state.showPersons === true ? ['show-persons'] : ['hide-persons', 'button-with-bottom-margin'], 
+      currentNumOfContacts: state.persons.length, 
+      currentNumStyle: state.persons.length >= 10 ? 'green' : state.persons.length > 3 ? 'red' : 'purple', 
+    }
+  }
+
+  renderPersons(persons) {
+    return persons.map((person) => {
+      return (
+        <Person 
+          name = {person.name}
+          title = {person.title}
+          company = {person.company}
+          email = {person.email}
+          remarks = {person.remarks}
+          editing = {person.editing}
+          changed = {(event) => this.remarksInputHandler(event, person.id)}
+          deleteClicked = {() => this.deletePersonHandler(person.id)} 
+          editClicked = {() => this.remarksEditorHandler(person.id)}
+          submitClicked = {() => this.remarksSubmitHandler(person.id)}
+          />
+      )}
+    )
+  }
+  
   render () {
-    const quoteDisplay = quoteLibrary[this.state.randomIndex]; 
-
-    const fontColorStyle = {
-      color: quoteDisplay.color
-    }; 
-
-    const backgroundStyle = {
-      backgroundColor: quoteDisplay.color
-    }; 
-
-    const twitterFullUrl = () => {
-      return constructTwitterUrl.preface + quoteDisplay.text + constructTwitterUrl.connection + quoteDisplay.author
-    }; 
-
-    const tublrFullUrl = () => {
-      return constructTumblrUrl.preface + quoteDisplay.author + constructTumblrUrl.connection + quoteDisplay.text + constructTumblrUrl.ending
-    }; 
-
+    const extendedState = this.getExtendedState(this.state); 
     return (
-      <div className="App" style = {backgroundStyle}>
-        <div style = {fontColorStyle}> 
-          <Quote 
-            text = {quoteDisplay.text}
-            author = {quoteDisplay.author}/>
-          <Buttons
-            twitterFullUrl = {twitterFullUrl()}
-            tublrFullUrl = {tublrFullUrl()}
-            clicked = {this.clickHandler}
-            buttonStyle = {backgroundStyle} />
+      <div className="App">
+        <h2> Business Cards Manager </h2>
+      <div className='currentNum'>
+        <h3> Current number of contacts: <span className={extendedState.currentNumStyle}>{extendedState.currentNumOfContacts}</span> </h3>
+      </div>
+        <button className={extendedState.showOrHideClasses[1]} onClick={this.togglePersonsHandler}> {extendedState.showOrHideButtonName} </button>
+        <div className={extendedState.showOrHideClasses[0]}>
+          {this.renderPersons(this.state.persons)}
         </div>
       </div>
     );
