@@ -216,6 +216,13 @@ class App extends Component {
   }
 
   deletePersonHandler(id) {
+    const person = this.state.persons.find(p=> {
+      return p.id === id;
+    }) 
+    const toDelete = window.confirm('Are you sure to delete ' + person.name +'?'); 
+    if(toDelete === false) {
+      return; 
+    } 
     const filteredPersons = this.state.persons.filter(p => {
       return p.id !== id; 
     }); 

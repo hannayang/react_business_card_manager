@@ -7,9 +7,9 @@ const person = (props) => {
   return (
     <div className='person'>
       <h3 className='name'> {props.name} </h3>
-      <div className='delete' onClick={props.deleteClicked}> <i class="fas fa-user-slash"></i> </div>
+      <div className='delete' onClick={props.deleteClicked}> <i className="fas fa-user-slash"></i> </div>
       <p className='title'> {props.title} @ {props.company} </p>
-      <p> <i class="fas fa-envelope-open-text"></i> {props.email} </p>
+      <p className='email'> <i className="fas fa-envelope-open-text"></i> <a href={'mailto:' + props.email} target='blank'> {props.email} </a></p>
       <div className={remarksEditorShowOrHide}>
         <p className='remarks-view'> 
           <i className="fas fa-comment"></i> {props.remarks} <i onClick={props.editClicked} class="fas fa-edit"></i>
