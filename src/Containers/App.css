@@ -13,31 +13,8 @@ h2 {
   padding-top: 40px; 
 }
 
-.currentNum {
-  height: 50px; 
-}
-
-h3 {
-  font-family: 'Courgette', cursive;
-}
-
-.green {
-  color: rgb(3, 139, 3); 
-}
-
-.red {
-  color: rgb(197, 13, 13); 
-}
-
-.purple {
-  color: rgba(179, 5, 179, 0.774); 
-}
-
 .show-persons {
-  display: flex;
-  flex-wrap: wrap;  
-  margin: 20px; 
-  justify-content: center; 
+  display: block;
 }
 
 .hide-persons {

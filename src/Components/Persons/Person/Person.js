@@ -12,7 +12,7 @@ const person = (props) => {
       <p className='email'> <i className="fas fa-envelope-open-text"></i> <a href={'mailto:' + props.email} target='blank'> {props.email} </a></p>
       <div className={remarksEditorShowOrHide}>
         <p className='remarks-view'> 
-          <i className="fas fa-comment"></i> {props.remarks} <i onClick={props.editClicked} class="fas fa-edit"></i>
+          <i className="fas fa-comment"></i> {props.remarks} <i onClick={props.editClicked} className="fas fa-edit"></i>
         </p>
         <p className='remarks-editing'>
           <textarea type='text' value={props.remarks} onChange={props.changed} />

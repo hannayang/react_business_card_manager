@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from '../Components/Persons/Person/Person'; 
+import Persons from '../Components/Persons/Persons'; 
 
 const persons = [{ 
   id: '001', 
@@ -176,59 +176,9 @@ class App extends Component {
   constructor(props) {
     super(props); 
     this.state = {
-      persons: persons, 
       showPersons: false,  
     } 
-    this.remarksInputHandler = this.remarksInputHandler.bind(this); 
-    this.deletePersonHandler = this.deletePersonHandler.bind(this); 
-    this.togglePersonsHandler = this.togglePersonsHandler.bind(this); 
-    this.remarksEditorHandler = this.remarksEditorHandler.bind(this); 
-  }; 
-
-  remarksInputHandler(event, id) {
-    const person = this.state.persons.find(p => {
-      return p.id === id; 
-    }); 
-    person.remarks = event.target.value; 
-    this.setState({
-      persons: this.state.persons, 
-    })
-  }; 
-
-  remarksEditorHandler(id) {
-    const person = this.state.persons.find(p => {
-      return p.id === id; 
-    })
-    person.editing = true; 
-    this.setState({
-      persons: this.state.persons,
-    })
-  }; 
-
-  remarksSubmitHandler(id) {
-    const person = this.state.persons.find(p => {
-      return p.id === id;
-    })
-    person.editing = false; 
-    this.setState({
-      persons: this.state.persons, 
-    })
-  }
-
-  deletePersonHandler(id) {
-    const person = this.state.persons.find(p=> {
-      return p.id === id;
-    }) 
-    const toDelete = window.confirm('Are you sure to delete ' + person.name +'?'); 
-    if(toDelete === false) {
-      return; 
-    } 
-    const filteredPersons = this.state.persons.filter(p => {
-      return p.id !== id; 
-    }); 
-    this.setState({
-      persons: filteredPersons, 
-    })
+    this.togglePersonsHandler = this.togglePersonsHandler.bind(this);
   }; 
 
   togglePersonsHandler() {
@@ -241,28 +191,7 @@ class App extends Component {
     return {
       showOrHideButtonName: state.showPersons === true ? 'HIDE CARDS' : 'SHOW CARDS', 
       showOrHideClasses: state.showPersons === true ? ['show-persons'] : ['hide-persons', 'button-with-bottom-margin'], 
-      currentNumOfContacts: state.persons.length, 
-      currentNumStyle: state.persons.length >= 10 ? 'green' : state.persons.length > 3 ? 'red' : 'purple', 
     }
-  }
-
-  renderPersons(persons) {
-    return persons.map((person) => {
-      return (
-        <Person 
-          name = {person.name}
-          title = {person.title}
-          company = {person.company}
-          email = {person.email}
-          remarks = {person.remarks}
-          editing = {person.editing}
-          changed = {(event) => this.remarksInputHandler(event, person.id)}
-          deleteClicked = {() => this.deletePersonHandler(person.id)} 
-          editClicked = {() => this.remarksEditorHandler(person.id)}
-          submitClicked = {() => this.remarksSubmitHandler(person.id)}
-          />
-      )}
-    )
   }
   
   render () {
@@ -270,12 +199,10 @@ class App extends Component {
     return (
       <div className="App">
         <h2> Business Cards Manager </h2>
-      <div className='currentNum'>
-        <h3> Current number of contacts: <span className={extendedState.currentNumStyle}>{extendedState.currentNumOfContacts}</span> </h3>
-      </div>
         <button className={extendedState.showOrHideClasses[1]} onClick={this.togglePersonsHandler}> {extendedState.showOrHideButtonName} </button>
         <div className={extendedState.showOrHideClasses[0]}>
-          {this.renderPersons(this.state.persons)}
+          <Persons 
+            persons={persons}/>
         </div>
       </div>
     );
