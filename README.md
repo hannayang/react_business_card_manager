@@ -1,4 +1,4 @@
-# Order Burger Online
+# Business Card Manager
 This project is to practice React with multiple layers of components, using props. 
 
 [![Screenshot](./screenshot1.png)](screenshot)
