@@ -33,3 +33,29 @@ button {
 .button-with-bottom-margin {
   margin-bottom: 600px; 
 }
+
+/*---------------@media--------------------*/
+@media(min-width: 2000px) {
+  h2 {
+    font-size: 50px; 
+  }
+  button {
+    font-size: 25px; 
+    padding: 15px; 
+  }
+  .button-with-bottom-margin {
+    margin-bottom: 1600px; 
+  }
+}
+
+@media(min-height: 750px) {
+  .button-with-bottom-margin {
+    margin-bottom: 1000px; 
+  }
+}
+
+@media(min-height: 1000px) {
+  .button-with-bottom-margin {
+    margin-bottom: 1400px; 
+  }
+}

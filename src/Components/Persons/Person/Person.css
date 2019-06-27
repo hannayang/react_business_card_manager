@@ -80,3 +80,20 @@ textarea {
   margin-right: 3px; 
 }
 
+/*---------------@media--------------------*/
+@media(min-width: 2000px) {
+  .person {
+    width: 500px;  
+    margin: 30px; 
+    padding: 25px 15px; 
+  }
+  h3.name {
+    font-size: 30px; 
+  }
+  .title {
+    font-size: 22px; 
+  }
+  .fas {
+    font-size: 25px; 
+  }
+}
